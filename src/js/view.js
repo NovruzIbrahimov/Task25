@@ -1,25 +1,30 @@
 export default class TicTacToeView {
-  constructor() {
+  constructor(model) {
+    this.model = model;
+
       this.squares = Array.from(document.querySelectorAll('.square'));
       this.playerDisplay = document.querySelector('.display-player');
       this.resetButton = document.querySelector('#reset');
       this.announcer = document.querySelector('.announcer');
       this.playerXScoreDisplay = document.querySelector('.playerX-score');
       this.playerOScoreDisplay = document.querySelector('.playerO-score');
-      this.playerXScore = 0; 
-      this.playerOScore = 0;
+    //   this.playerXScore; 
+    //   this.playerOScore;
      
   }
 
   init() {
-      
-      this.updateScore();
+    console.log('this.model',this.model)
+    // this.playerXScore = this.model.playerXScore; 
+    // this.playerOScore = this.model.playerOScore;
+    this.updateScore();
   }
 
   updateSquare(index, currentPlayer) {
+    console.log('here')
       this.squares[index].innerText = currentPlayer;
       this.squares[index].classList.add(`player${currentPlayer}`);
-    //   this.playerXScoreDisplay.innerText = this.playerXScore;
+    //   this.playerXScoreDisplay.innerText = 1;//this.playerXScore;
     //   this.playerOScoreDisplay.innerText = this.playerOScore;
   }
 
@@ -30,8 +35,8 @@ export default class TicTacToeView {
   }
 
   updateScore() {
-      this.playerXScoreDisplay.innerText = this.playerXScore;
-      this.playerOScoreDisplay.innerText = this.playerOScore;
+      this.playerXScoreDisplay.innerText = this.model.playerXScore;
+      this.playerOScoreDisplay.innerText = this.model.playerOScore;
   }
 
   addClickListener(callback) {
@@ -48,14 +53,17 @@ export default class TicTacToeView {
       this.announcer.classList.remove('hide');
       switch (type) {
           case 'PLAYERO_WON':
-              this.announcer.innerHTML = 'Player <span class="playerO">O</span> Won';
+              this.announcer.innerHTML = 'Player <span class="playerO">O-</span> Won';
               break;
           case 'PLAYERX_WON':
-              this.announcer.innerHTML = 'Player <span class="playerX">X</span> Won';
+              this.announcer.innerHTML = 'Player <span class="playerX">X-</span> Won';
               break;
           case 'TIE':
               this.announcer.innerText = 'Tie';
               break;
       }
+      this.init();
+
+    //   console.log()
   }
 }

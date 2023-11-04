@@ -4,10 +4,10 @@ import TicTacToeController from './controller.js';
 
 window.addEventListener('DOMContentLoaded', () => {
     const model = new TicTacToeModel();
-    const view = new TicTacToeView();
+    const view = new TicTacToeView(model);
     const controller = new TicTacToeController(model, view);
 
-    view.init();
+    // view.init();
     controller.init();
     view.addClickListener(controller.handleUserAction.bind(controller));
     view.addResetClickListener(controller.handleResetBoard.bind(controller));

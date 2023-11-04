@@ -14,8 +14,12 @@ export default class TicTacToeController {
             if (this.model.updateBoard(index)) {
                 this.view.updateSquare(index, this.model.currentPlayer);
                 if (this.model.checkWin()) {
+                    console.log("WINNER",this.model.currentPlayer )
                     if (this.model.currentPlayer === 'X') {
+                        
                         this.model.playerXScore++; 
+                    console.log("WINNER X => ",this.model.playerXScore )
+
                     } else {
                         this.model.playerOScore++;
                     }

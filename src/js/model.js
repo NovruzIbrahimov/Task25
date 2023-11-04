@@ -15,6 +15,21 @@ export default class TicTacToeModel {
         return false;
     }
 
+    handleUserAction(index) {
+        if (this.model.checkWin()) {
+            if (this.model.currentPlayer === 'X') {
+                this.model.playerXScore++; 
+            } else {
+                this.model.playerOScore++;
+            }
+            this.view.updateScore(); 
+            this.view.announceResult(this.model.currentPlayer === 'X' ? 'PLAYERX_WON' : 'PLAYERO_WON');
+            this.model.isGameActive = false;
+        }
+    }
+
+    
+
     checkWin() {
         const winConditions = [
             [0, 1, 2],
